@@ -1,5 +1,6 @@
 package com.example.client.modules.person.domain;
 
+import com.example.client.core.GenderEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class PersonModel {
     private Long id;
     private String name;
-    private String gender;
+    private GenderEnum gender;
     private int age;
     private String identification;
     private String address;
