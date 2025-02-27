@@ -2,6 +2,7 @@ package com.example.client.modules.client.infrastructure.api;
 
 import com.example.client.core.utils.BaseResponse;
 import com.example.client.modules.client.application.dto.ClientRequestDTO;
+import com.example.client.modules.client.application.dto.ClientResponseDTO;
 import com.example.client.modules.client.application.dto.UpdateClientDTO;
 import com.example.client.modules.client.application.ports.in.*;
 import com.example.client.modules.client.domain.ClientModel;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -27,20 +29,20 @@ public class ClientController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<BaseResponse<ClientModel>> createClient(@RequestBody @Valid ClientRequestDTO dto) {
-        return ResponseEntity.created(URI.create("/api/clientes")).body(BaseResponse.<ClientModel>builder().message("Client created successfully").data(createClientUseCase.create(dto)).build());
+    ResponseEntity<BaseResponse<ClientResponseDTO>> createClient(@RequestBody @Valid ClientRequestDTO dto) {
+        return ResponseEntity.created(URI.create("/api/clientes")).body(BaseResponse.<ClientResponseDTO>builder().message("Client created successfully").data(createClientUseCase.create(dto)).build());
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<BaseResponse<ClientModel>> updateClient(@PathVariable Long id, @RequestBody @Valid UpdateClientDTO dto) {
-        return ResponseEntity.ok().body(BaseResponse.<ClientModel>builder().message("Client updated successfully").data(updateClientUseCase.update(dto, id)).build());
+    ResponseEntity<BaseResponse<ClientResponseDTO>> updateClient(@PathVariable Long id, @RequestBody @Valid UpdateClientDTO dto) {
+        return ResponseEntity.ok().body(BaseResponse.<ClientResponseDTO>builder().message("Client updated successfully").data(updateClientUseCase.update(dto, id)).build());
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<BaseResponse<ClientModel>> getClient(@PathVariable Long id) {
-        return ResponseEntity.ok().body(BaseResponse.<ClientModel>builder().message("Client retrieved successfully").data(retrieveClientUseCase.retrieve(id)).build());
+    ResponseEntity<BaseResponse<ClientResponseDTO>> getClient(@PathVariable Long id) {
+        return ResponseEntity.ok().body(BaseResponse.<ClientResponseDTO>builder().message("Client retrieved successfully").data(retrieveClientUseCase.retrieve(id)).build());
     }
 
     @DeleteMapping("/{id}")
@@ -52,7 +54,7 @@ public class ClientController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<BaseResponse<Page<ClientModel>>> getAllClients(@RequestParam Map<String, Object> params) {
-        return ResponseEntity.ok().body(BaseResponse.<Page<ClientModel>>builder().message("Clients retrieved successfully").data(retrieveClientsUseCase.retrieve(params)).build());
+    ResponseEntity<BaseResponse<Page<ClientResponseDTO>>> getAllClients(@RequestParam Map<String, Object> params) {
+        return ResponseEntity.ok().body(BaseResponse.<Page<ClientResponseDTO>>builder().message("Clients retrieved successfully").data(retrieveClientsUseCase.retrieve(params)).build());
     }
 }

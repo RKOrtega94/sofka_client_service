@@ -1,6 +1,7 @@
 package com.example.client.modules.client.application.ports.in;
 
 import com.example.client.modules.client.application.dto.ClientRequestDTO;
+import com.example.client.modules.client.application.dto.ClientResponseDTO;
 import com.example.client.modules.client.domain.ClientModel;
 
 /**
@@ -15,5 +16,5 @@ public interface CreateClientUseCase {
      * @param dto The DTO containing the client's request data.
      * @return The DTO representing the created client.
      */
-    ClientModel create(ClientRequestDTO dto);
+    ClientResponseDTO create(ClientRequestDTO dto);
 }

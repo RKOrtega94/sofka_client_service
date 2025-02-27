@@ -1,5 +1,6 @@
 package com.example.client.modules.client.application.ports.in;
 
+import com.example.client.modules.client.application.dto.ClientResponseDTO;
 import com.example.client.modules.client.domain.ClientModel;
 import org.springframework.data.domain.Page;
 
@@ -18,5 +19,5 @@ public interface RetrieveClientsUseCase {
      * @param params A map containing the parameters for filtering and retrieving clients.
      * @return A page of client models matching the provided parameters.
      */
-    Page<ClientModel> retrieve(Map<String, Object> params);
+    Page<ClientResponseDTO> retrieve(Map<String, Object> params);
 }

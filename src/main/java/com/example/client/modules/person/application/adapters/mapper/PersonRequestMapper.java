@@ -11,5 +11,6 @@ public interface PersonRequestMapper {
     PersonRequestMapper INSTANCE = Mappers.getMapper(PersonRequestMapper.class);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "status", ignore = true)
     PersonModel toModel(PersonRequestDTO dto);
 }

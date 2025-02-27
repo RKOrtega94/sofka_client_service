@@ -1,5 +1,6 @@
 package com.example.client.modules.client.application.ports.in;
 
+import com.example.client.modules.client.application.dto.ClientResponseDTO;
 import com.example.client.modules.client.domain.ClientModel;
 
 /**
@@ -14,5 +15,5 @@ public interface RetrieveClientUseCase {
      * @param id The ID of the client to retrieve.
      * @return The client model corresponding to the provided ID.
      */
-    ClientModel retrieve(Long id);
+    ClientResponseDTO retrieve(Long id);
 }

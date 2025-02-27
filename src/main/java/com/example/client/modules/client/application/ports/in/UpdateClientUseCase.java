@@ -1,7 +1,7 @@
 package com.example.client.modules.client.application.ports.in;
 
+import com.example.client.modules.client.application.dto.ClientResponseDTO;
 import com.example.client.modules.client.application.dto.UpdateClientDTO;
-import com.example.client.modules.client.domain.ClientModel;
 
 /**
  * This interface represents the use case for updating an existing client.
@@ -16,5 +16,5 @@ public interface UpdateClientUseCase {
      * @param id  The ID of the client to be updated.
      * @return The DTO representing the updated client.
      */
-    ClientModel update(UpdateClientDTO dto, Long id);
+    ClientResponseDTO update(UpdateClientDTO dto, Long id);
 }

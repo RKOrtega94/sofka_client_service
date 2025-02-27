@@ -2,6 +2,7 @@ package com.example.client.modules.client.application.service;
 
 import com.example.client.modules.client.application.adapters.ClientRequestMapper;
 import com.example.client.modules.client.application.dto.ClientRequestDTO;
+import com.example.client.modules.client.application.dto.ClientResponseDTO;
 import com.example.client.modules.client.application.dto.UpdateClientDTO;
 import com.example.client.modules.client.application.ports.in.*;
 import com.example.client.modules.client.application.ports.out.ClientRepository;
@@ -19,8 +20,9 @@ public class ClientService implements CreateClientUseCase, UpdateClientUseCase, 
     private final ClientRepository repository;
 
     @Override
-    public ClientModel create(ClientRequestDTO dto) {
-        return repository.save(mapper.toModel(dto));
+    public ClientResponseDTO create(ClientRequestDTO dto) {
+        ClientModel model = repository.save(mapper.toModel(dto));
+        return mapper.toResponse(model);
     }
 
     @Override
@@ -29,17 +31,19 @@ public class ClientService implements CreateClientUseCase, UpdateClientUseCase, 
     }
 
     @Override
-    public ClientModel retrieve(Long id) {
-        return repository.findById(id);
+    public ClientResponseDTO retrieve(Long id) {
+        ClientModel model = repository.findById(id);
+        return mapper.toResponse(model);
     }
 
     @Override
-    public Page<ClientModel> retrieve(Map<String, Object> params) {
-        return repository.findAll(params);
+    public Page<ClientResponseDTO> retrieve(Map<String, Object> params) {
+        return repository.findAll(params).map(mapper::toResponse);
     }
 
     @Override
-    public ClientModel update(UpdateClientDTO dto, Long id) {
-        return repository.update(mapper.toModel(dto), id);
+    public ClientResponseDTO update(UpdateClientDTO dto, Long id) {
+        ClientModel model = repository.update(mapper.toModel(dto), id);
+        return mapper.toResponse(model);
     }
 }
